@@ -57,7 +57,8 @@
 	},
 	"engines": {
 		"node": "^12.13.1",
-		"npm": "^6.12.1"
+		"npm": "^6.12.1",
+		"yarn": "^1.21.0"
 	},
 	"scripts": {
 		"preanalyze-bundles": "cross-env-shell NODE_ENV=production CALYPSO_ENV=production EMIT_STATS=true PROGRESS=true yarn run -s build-client-evergreen",
@@ -67,7 +68,7 @@
 		"prebuild": "yarn run install-if-deps-outdated",
 		"build": "yarn run build-static && yarn run build-packages && yarn run build-css && run-p -s build-devdocs:* && run-p -s build-server build-client-if-prod build-client-if-desktop",
 		"build-css": "run-p -s build-css:*",
-		"build-css:directly": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js --include-path client client/assets/stylesheets/directly.scss public/directly.css --output-style compressed && yarn run -s postcss -- public/directly.css",
+		"build-css:directly": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js --include-path client client/assets/stylesheets/directly.scss public/directly.css --output-style compressed && yarn run -s postcss public/directly.css",
 		"build-css:editor": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js --include-path client client/assets/stylesheets/editor.scss public/editor.css --output-style compressed && yarn run -s postcss -- public/editor.css",
 		"build-devdocs:search-index": "node bin/generate-devdocs-search-index.js",
 		"build-docker": "node bin/build-docker.js",

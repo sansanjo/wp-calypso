@@ -100,9 +100,9 @@ references:
     paths:
       - '.git'
 
-  # npm cache
+  # yarn cache
   #
-  # npm caches the modules it installs in ~/.npm.
+  # yarn caches the modules it installs in ~/.cache/yarn.
   # We cache that cache to save time pulling modules from the network.
   #
   #
@@ -111,19 +111,25 @@ references:
   #   - https://github.com/Automattic/wp-calypso/pull/25487
   #   - https://github.com/Automattic/wp-calypso/pull/27180
   #
-  # More about the CircleCI cache: https://circleci.com/docs/2.0/caching
-  restore-npm-cache: &restore-npm-cache
-    name: 'Restore npm cache'
+  # More about the CircleCI cache: https://circleci.com/docs/2.0/caching and https://circleci.com/docs/2.0/yarn/
+  restore-yarn-cache: &restore-yarn-cache
+    name: 'Restore yarn cache'
     keys:
+<<<<<<< HEAD
       - v{{ .Environment.GLOBAL_CACHE_PREFIX }}-node-modules-{{ checksum ".nvmrc" }}-{{ checksum "yarn.lock" }}
       - v{{ .Environment.GLOBAL_CACHE_PREFIX }}-node-modules-{{ checksum ".nvmrc" }}
+=======
+      - v{{ .Environment.GLOBAL_CACHE_PREFIX }}-yarn-modules-{{ checksum ".nvmrc" }}-{{ checksum "yarn.lock" }}
+      - v{{ .Environment.GLOBAL_CACHE_PREFIX }}-yarn-modules-{{ checksum ".nvmrc" }}
+>>>>>>> ec7c28bcc4036e84a022fec0fdc2686066c37b75
 
-  npm-install: &npm-install
+  yarn-install: &yarn-install
     environment:
       PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: "true"
     name: Install dependencies
     command: yarn install --frozen-lockfile
 
+<<<<<<< HEAD
   save-npm-cache: &save-npm-cache
     name: 'Save node_modules cache'
     key: v{{ .Environment.GLOBAL_CACHE_PREFIX }}-node-modules-{{ checksum ".nvmrc" }}-{{ checksum "yarn.lock" }}
@@ -134,6 +140,18 @@ references:
     command: |
       cd test/e2e &&
       CHROMEDRIVER_VERSION=$(<.chromedriver_version) yarn install --frozen-lockfile
+=======
+  save-yarn-cache: &save-yarn-cache
+    name: 'Save yarn cache'
+    key: v{{ .Environment.GLOBAL_CACHE_PREFIX }}-yarn-modules-{{ checksum ".nvmrc" }}-{{ checksum "yarn.lock" }}
+    paths:
+      - ~/.cache/yarn
+  yarn-e2e-install: &yarn-e2e-install
+    name: Install e2e yarn dependencies
+    command: |
+      cd test/e2e &&
+      CHROMEDRIVER_VERSION=$(<.chromedriver_version) yarn install --immutable
+>>>>>>> ec7c28bcc4036e84a022fec0fdc2686066c37b75
 
   # Babel cache
   # More about the CircleCI cache: https://circleci.com/docs/2.0/caching
@@ -196,11 +214,19 @@ jobs:
       - checkout
       - run: *update-git-master
       - save_cache: *save-git-cache
+<<<<<<< HEAD
       # npm dependencies
       - restore_cache: *restore-npm-cache
       - run: *npm-install
       - run: *npm-e2e-install
       - save_cache: *save-npm-cache
+=======
+      # yarn dependencies
+      - restore_cache: *restore-yarn-cache
+      - run: *yarn-install
+      - run: *yarn-e2e-install
+      - save_cache: *save-yarn-cache
+>>>>>>> ec7c28bcc4036e84a022fec0fdc2686066c37b75
       - run: yarn run build-packages
       - persist_to_workspace:
           root: '~'
@@ -224,7 +250,11 @@ jobs:
       - prepare
       - run:
           name: TypeScript strict typecheck of individual subprojects
+<<<<<<< HEAD
           command: yarn run typecheck -- --project client/landing/gutenboarding
+=======
+          command: yarn run typecheck --project client/landing/gutenboarding
+>>>>>>> ec7c28bcc4036e84a022fec0fdc2686066c37b75
 
   lint-and-translate:
     <<: *defaults
