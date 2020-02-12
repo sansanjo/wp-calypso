@@ -143,7 +143,7 @@ Using [Lerna](https://lernajs.io/) to publish package(s):
 1. `git pull`
 1. `git status` (should be clean!)
 1. `yarn run distclean`
-1. `npm ci`
+1. `yarn install --frozen-lockfile`
 1. `npx lerna publish from-package`
 1. Say “no” at the prompt.
 1. Lerna will confirm which packages and versions will be published. If something looks off, abort!
