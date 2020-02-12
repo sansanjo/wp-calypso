@@ -22,5 +22,5 @@ you'll need to run `yarn run update-deps` (that will take a while). Internally, 
 To verify that the new `package-lock.json` works:
 
 - Run `yarn run distclean` to delete local `node_modules`
-- Run `npm ci`
+- Run `yarn install --frozen-lockfile`
 - Verify that Calypso works as expected and that tests pass
