@@ -8,7 +8,7 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { useDebounce } from 'use-debounce';
 import classnames from 'classnames';
 import { DomainSuggestions } from '@automattic/data-stores';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 /**
  * Internal dependencies
@@ -20,7 +20,7 @@ import DomainPickerButton from '../domain-picker-button';
 import { selectorDebounce } from '../../constants';
 import Link from '../link';
 import { createSite } from '../../utils';
-import { Step, makePath } from '../../path';
+import { Step, usePath } from '../../path';
 
 const DOMAIN_SUGGESTIONS_STORE = DomainSuggestions.register();
 
@@ -61,7 +61,7 @@ const Header: FunctionComponent< Props > = ( { prev } ) => {
 	}, [ siteTitle, setDomain ] );
 
 	const history = useHistory();
-	const { lang } = useParams();
+	const createSitePath = usePath( Step.CreateSite );
 
 	const currentDomain = domain ?? freeDomainSuggestion;
 
@@ -92,7 +92,7 @@ const Header: FunctionComponent< Props > = ( { prev } ) => {
 
 	const handleCreateSite = () => {
 		setIsCreatingSite( true );
-		history.push( makePath( Step.CreateSite, lang ) );
+		history.push( createSitePath );
 		createSite( siteCreationData ).then( siteSlug => {
 			resetOnboardStore();
 			window.location.href = `/block-editor/page/${ siteSlug }/home?is-gutenboarding`;
