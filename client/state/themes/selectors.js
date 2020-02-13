@@ -31,7 +31,10 @@ import {
 	oldShowcaseUrl,
 } from './utils';
 import { DEFAULT_THEME_QUERY } from './constants';
-import { FEATURE_UNLIMITED_PREMIUM_THEMES } from 'lib/plans/constants';
+import {
+	FEATURE_AUTO_LOADING_HOMEPAGE,
+	FEATURE_UNLIMITED_PREMIUM_THEMES,
+} from 'lib/plans/constants';
 
 /**
  * Returns a theme object by site ID, theme ID pair.
@@ -507,7 +510,6 @@ export function getThemeDemoUrl( state, themeId, siteId ) {
  *
  * @param  {object}  state   Global state tree
  * @param  {string}  themeId Theme ID
- * @param  {string}  siteId  Site ID
  * @returns {?string}         Theme forum URL
  */
 export function getThemeForumUrl( state, themeId ) {
@@ -729,8 +731,7 @@ export function getJetpackUpgradeUrlIfPremiumTheme( state, themeId, siteId ) {
 
 /**
  * Returns the price string to display for a given theme on a given site:
- *
- * @TODO Add tests!
+ * `@TODO Add tests!`
  *
  * @param  {object}  state   Global state tree
  * @param  {string}  themeId Theme ID
@@ -770,4 +771,18 @@ export function isThemeGutenbergFirst( state, themeId ) {
 	const neededFeatures = [ 'global-styles', 'auto-loading-homepage' ];
 	// The theme should have a positive number of matching features to qualify.
 	return !! intersection( themeFeatures, neededFeatures ).length;
+}
+
+/**
+ * Checks if a theme has auto loading homepage feature.
+ *
+ * @param {object} state   Global state tree
+ * @param {string} themeId An identifier for the theme
+ * @returns {boolean} True if the theme has auto loading homepage. Otherwise, False.
+ */
+export function hasAutoLoadingHomepageFeature( state, themeId ) {
+	return includes(
+		getThemeTaxonomySlugs( getTheme( state, 'wpcom', themeId ), 'theme_feature' ),
+		FEATURE_AUTO_LOADING_HOMEPAGE
+	);
 }
