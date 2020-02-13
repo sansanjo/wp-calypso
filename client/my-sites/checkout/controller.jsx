@@ -81,6 +81,7 @@ export function checkout( context, next ) {
 			couponCode={ context.query.coupon || context.query.code || getRememberedCoupon() }
 			// Are we being redirected from the signup flow?
 			isComingFromSignup={ !! context.query.signup }
+			isComingFromFrankenflow={ !! context.query.preLaunch }
 			plan={ plan }
 			selectedSite={ selectedSite }
 			reduxStore={ context.store }
