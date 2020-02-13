@@ -19622,8 +19622,6 @@ terser-webpack-plugin@^2.1.2:
     terser "^4.4.3"
     webpack-sources "^1.4.3"
 
-<<<<<<< HEAD
-=======
 terser@4.4.3:
   version "4.4.3"
   resolved "https://registry.yarnpkg.com/terser/-/terser-4.4.3.tgz#401abc52b88869cf904412503b1eb7da093ae2f0"
@@ -19633,7 +19631,6 @@ terser@4.4.3:
     source-map "~0.6.1"
     source-map-support "~0.5.12"
 
->>>>>>> ec7c28bcc4036e84a022fec0fdc2686066c37b75
 terser@^4.1.2, terser@^4.3.9, terser@^4.4.3:
   version "4.6.3"
   resolved "https://registry.yarnpkg.com/terser/-/terser-4.6.3.tgz#e33aa42461ced5238d352d2df2a67f21921f8d87"

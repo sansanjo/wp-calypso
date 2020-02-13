@@ -10,7 +10,7 @@ If you want to add a new project or package into this directory, then add a new 
 
 ## Building
 
-Packages are built on Calypso's `npm install` so you don't need to build them manually, unless you are working directly on them.
+Packages are built on Calypso's `yarn` so you don't need to build them manually, unless you are working directly on them.
 
 If you must manually build a single package, run:
 

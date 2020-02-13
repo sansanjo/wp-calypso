@@ -10,7 +10,7 @@ If you want to add a new project into this directory, then add a new directory a
 
 ## Building
 
-Apps (unlike packages) are not built on Calypso's `npm install`.
+Apps (unlike packages) are not built on Calypso's `yarn`.
 
 You must manually build apps by running:
 

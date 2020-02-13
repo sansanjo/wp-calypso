@@ -91,7 +91,7 @@ To run one package's tests:
 
 ## Building packages & apps
 
-Packages will have their `prepare` scripts run automatically on `npm install`.
+Packages will have their `prepare` scripts run automatically on `yarn`.
 
 You can build packages also by running:
 
@@ -111,7 +111,7 @@ Or specific apps:
 npx lerna run build --scope="@automattic/calypso-build"
 ```
 
-All `prepare` scripts found in all `package.json`s of apps and packages are always run on Calypso's `npm install`. Therefore independent apps in `/apps` directory can use `build` instead of `prepare` so avoid unnecessary builds.
+All `prepare` scripts found in all `package.json`s of apps and packages are always run on Calypso's `yarn`. Therefore independent apps in `/apps` directory can use `build` instead of `prepare` so avoid unnecessary builds.
 
 You can also run other custom `package.json` scripts only for your app or package:
 

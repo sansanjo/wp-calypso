@@ -8,7 +8,7 @@ A set of React components, custom Hooks, and helper functions that together can 
 
 Once published, you'll be able to install this package using npm with:
 
-`npm install @automattic/composite-checkout`
+`yarn add @automattic/composite-checkout`
 
 ## Description
 

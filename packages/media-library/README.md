@@ -5,7 +5,7 @@ A Media Library component for use in Automattic products.
 ## Installation
 
 ```bash
-npm i -S @automattic/media-library
+yarn add @automattic/media-library
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ import {} from '@automattic/media-library';
 
 ### Installation
 
-Run `npm install` in the root of the repository to get the required `devDependencies`.
+Run `yarn` in the root of the repository to get the required `devDependencies`.
 
 ### Testing
 

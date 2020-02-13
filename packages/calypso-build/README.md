@@ -13,7 +13,7 @@ It is designed in a way that in its simplest form is very easy to invoke, with v
 Add add `@automattic/calypso-build` to your project's `devDependencies` by running
 
 ```
-npm install --save-dev @automattic/calypso-build
+yarn add --dev @automattic/calypso-build
 ```
 
 Then, add a `build` script that invokes the `calypso-build` command:

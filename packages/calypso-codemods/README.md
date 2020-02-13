@@ -8,7 +8,7 @@ Code modification scripts, also known as codemods, are transformation scripts th
 
 Install calypso-codemods using `npm` or `yarn`:
 ```
-npm install -g calypso-codemods
+yarn global add calypso-codemods
 ```
 
 Now you can run codemods using the following cli:
