@@ -13,7 +13,7 @@ import config from '../../config';
 import { Gutenboard } from './gutenboard';
 import { setupWpDataDebug } from './devtools';
 import accessibleFocus from 'lib/accessible-focus';
-import { path, makePath, Step } from './path';
+import { path } from './path';
 
 /**
  * Style dependencies
@@ -37,7 +37,7 @@ window.AppBoot = () => {
 						<Gutenboard />
 					</Route>
 					<Route>
-						<Redirect to={ makePath( Step.IntentGathering ) } />
+						<Redirect to="/" />
 					</Route>
 				</Switch>
 			</BrowserRouter>,
