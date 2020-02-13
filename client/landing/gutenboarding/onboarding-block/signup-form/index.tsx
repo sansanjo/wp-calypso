@@ -1,11 +1,12 @@
 /**
  * External dependencies
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, ExternalLink, TextControl, Modal } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
 import { __experimentalCreateInterpolateElement } from '@wordpress/element';
 import { __ as NO__, _x as NO_x } from '@wordpress/i18n';
+import { recordTracksEvent, recordTracksPageViewWithPageParams } from '@automattic/calypso-analytics';
 
 /**
  * Internal dependencies
@@ -31,6 +32,12 @@ const SignupForm = () => {
 	const newUser = useSelect( select => select( USER_STORE ).getNewUser() );
 	const newUserError = useSelect( select => select( USER_STORE ).getNewUserError() );
 	const { shouldCreate } = useSelect( select => select( ONBOARD_STORE ) ).getState();
+
+	useEffect( () => {
+		recordTracksEvent( 'calypso_gutenboarding_signup_start', {
+			flow: 'gutenboarding',
+		} );
+	}, [ false ] );
 
 	const handleSignUp = ( event: React.FormEvent< HTMLFormElement > ) => {
 		event.preventDefault();
