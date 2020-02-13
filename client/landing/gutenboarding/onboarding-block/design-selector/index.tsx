@@ -93,6 +93,7 @@ const DesignSelector: FunctionComponent< Props > = ( { showPageSelector = false 
 
 	const history = useHistory();
 	const pageSelectionPath = usePath( Step.PageSelection );
+	const designSelectionPath = usePath( Step.DesignSelection );
 
 	return (
 		<animated.div style={ designSelectorSpring }>
@@ -164,7 +165,7 @@ const DesignSelector: FunctionComponent< Props > = ( { showPageSelector = false 
 			<Dialog
 				{ ...dialog }
 				hide={ () => {
-					history.push( Step.DesignSelection );
+					history.push( designSelectionPath );
 				} }
 				aria-labelledby="page-layout-selector__title"
 				hideOnClickOutside
