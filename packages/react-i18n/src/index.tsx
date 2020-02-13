@@ -9,10 +9,10 @@ export interface I18nProps {
 	_n: typeof _n;
 	_nx: typeof _nx;
 	_x: typeof _x;
-	i18nLocale?: string;
+	i18nLocale: string;
 }
 
-const I18nContext = React.createContext< I18nProps >( { __, _n, _nx, _x } );
+const I18nContext = React.createContext< I18nProps >( makeI18n( 'en' ) );
 
 interface Props {
 	/**
@@ -23,12 +23,12 @@ interface Props {
 	/**
 	 * A callback that resolves with the translations data
 	 */
-	onLocaleChange?( newLocale: string | undefined ): Promise< object >;
+	loadLocaleData?( newLocale: string ): Promise< object >;
 }
 export const I18nProvider: React.FunctionComponent< Props > = ( {
 	children,
 	locale,
-	onLocaleChange = () => Promise.resolve( {} ),
+	loadLocaleData = () => Promise.resolve( {} ),
 } ) => {
 	const [ contextValue, setContextValue ] = React.useState< I18nProps >( makeI18n( locale ) );
 	React.useEffect( () => {
@@ -36,7 +36,7 @@ export const I18nProvider: React.FunctionComponent< Props > = ( {
 		const cancel = () => {
 			cancelled = true;
 		};
-		onLocaleChange( locale ).then( nextLocaleData => {
+		loadLocaleData( locale ).then( nextLocaleData => {
 			if ( cancelled ) {
 				return;
 			}
@@ -44,12 +44,12 @@ export const I18nProvider: React.FunctionComponent< Props > = ( {
 			setContextValue( makeI18n( locale ) );
 		} );
 		return cancel;
-	}, [ locale, onLocaleChange ] );
+	}, [ locale, loadLocaleData ] );
 	return <I18nContext.Provider value={ contextValue }>{ children }</I18nContext.Provider>;
 };
 
 function makeI18n( i18nLocale: string ) {
-	return { ...( i18nLocale && { i18nLocale } ), __, _n, _nx, _x };
+	return { __, _n, _nx, _x, i18nLocale };
 }
 
 /**
