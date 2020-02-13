@@ -5,6 +5,7 @@ import { Button } from '@wordpress/components';
 import { Link as RouterLink, LinkProps } from 'react-router-dom';
 import React, { forwardRef, FunctionComponent } from 'react';
 import { Assign } from 'utility-types';
+import { usePath } from '../../path';
 
 interface LinkButtonProps extends Button.AnchorProps {
 	navigate: () => void;
@@ -50,10 +51,12 @@ type Props = Omit<
 	'disabled' | 'href'
 >;
 const Link: FunctionComponent< Props > = ( { children, ...props } ) => {
+	const to = usePath( props.to );
+
 	if ( props.to ) {
 		return (
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			<RouterLink { ...( props as any ) } component={ LinkButton }>
+			<RouterLink { ...( props as any ) } component={ LinkButton } to={ to }>
 				{ children }
 			</RouterLink>
 		);
