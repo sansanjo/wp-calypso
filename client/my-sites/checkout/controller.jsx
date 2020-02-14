@@ -72,6 +72,14 @@ export function checkout( context, next ) {
 		return;
 	}
 
+	const isComingFromSignup = !! context.query.signup;
+	if ( isComingFromSignup ) {
+		const currentHref = document.location.href;
+		window.history.pushState( null, null, `/plans/${ selectedSite?.slug ?? '' }` );
+		window.history.pushState( null, null, `/plans/${ selectedSite?.slug ?? '' }` );
+		window.history.replaceState( null, null, currentHref );
+	}
+
 	context.primary = (
 		<CheckoutContainer
 			product={ product }
@@ -80,7 +88,7 @@ export function checkout( context, next ) {
 			// NOTE: `context.query.code` is deprecated in favor of `context.query.coupon`.
 			couponCode={ context.query.coupon || context.query.code || getRememberedCoupon() }
 			// Are we being redirected from the signup flow?
-			isComingFromSignup={ !! context.query.signup }
+			isComingFromSignup={ isComingFromSignup }
 			plan={ plan }
 			selectedSite={ selectedSite }
 			reduxStore={ context.store }
