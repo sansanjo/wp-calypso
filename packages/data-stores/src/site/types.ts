@@ -4,22 +4,17 @@
 
 import { Action } from 'redux';
 
-export interface NewSite {
-	blogname: string;
-	blogid: string;
-	blog_details: object;
-}
-
-export interface NewSiteSuccessResponseBlogDetails {
+export interface NewSiteBlogDetails {
 	url: string;
 	blogid: number;
 	blogname: string;
+	site_slug?: string;
 	xmlrpc: string;
 }
 
 export interface NewSiteSuccessResponse {
 	success: boolean;
-	blog_details: NewSiteSuccessResponseBlogDetails;
+	blog_details: NewSiteBlogDetails;
 	is_signup_sandbox?: boolean;
 }
 
