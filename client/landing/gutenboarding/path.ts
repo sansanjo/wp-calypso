@@ -20,14 +20,14 @@ export const path = `/:step(${ steps.join( '|' ) })?/:lang(${ langs.join( '|' ) 
 
 export type StepType = ValuesType< typeof Step >;
 
-export function makePath( step: ValuesType< typeof steps >, lang?: string ) {
+export function makePath( step: StepType, lang?: string ) {
 	return generatePath( path, {
 		step,
 		...( lang && langs.includes( lang ) && { lang } ),
 	} );
 }
 
-export function usePath( step: ValuesType< typeof steps >, lang?: string ) {
+export function usePath( step: StepType, lang?: string ) {
 	const match = useRouteMatch< { lang?: string } >( path );
 	return makePath( step, lang || match?.params.lang );
 }
