@@ -20,12 +20,12 @@ import DomainPickerButton from '../domain-picker-button';
 import { selectorDebounce } from '../../constants';
 import Link from '../link';
 import { createSite } from '../../utils';
-import { Step, usePath } from '../../path';
+import { Step, usePath, StepType } from '../../path';
 
 const DOMAIN_SUGGESTIONS_STORE = DomainSuggestions.register();
 
 interface Props {
-	prev?: string;
+	prev?: StepType;
 }
 
 const Header: FunctionComponent< Props > = ( { prev } ) => {

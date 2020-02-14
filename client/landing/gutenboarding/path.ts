@@ -18,6 +18,8 @@ export const steps = Object.keys( Step ).map( key => Step[ key as keyof typeof S
 
 export const path = `/:step(${ steps.join( '|' ) })?/:lang(${ langs.join( '|' ) })?`;
 
+export type StepType = ValuesType< typeof Step >;
+
 export function makePath( step: ValuesType< typeof steps >, lang?: string ) {
 	return generatePath( path, {
 		step,

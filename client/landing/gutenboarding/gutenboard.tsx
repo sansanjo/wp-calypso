@@ -29,7 +29,7 @@ export function Gutenboard() {
 	// for the 'Back' and 'Next' buttons in the header. If we remove those (and move navigation
 	// entirely into the block), we'll be able to remove this code.
 	const { step } = useParams();
-	let prev: undefined | string;
+	let prev: undefined | import('./path').StepType;
 	switch ( step ) {
 		case Step.DesignSelection:
 			prev = Step.IntentGathering;
