@@ -13,8 +13,8 @@ export const Step = {
 	CreateSite: 'create-site',
 } as const;
 
-const langs: string[] = getLanguageSlugs();
-const steps = Object.keys( Step ).map( key => Step[ key as keyof typeof Step ] );
+export const langs: string[] = getLanguageSlugs();
+export const steps = Object.keys( Step ).map( key => Step[ key as keyof typeof Step ] );
 
 export const path = `/:step(${ steps.join( '|' ) })?/:lang(${ langs.join( '|' ) })?`;
 
